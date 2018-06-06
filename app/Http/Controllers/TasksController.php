@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 
 use App\Http\Requests;
 
-
+use App\User;
 use App\Task;  
 
 class TasksController extends Controller
@@ -30,7 +30,7 @@ class TasksController extends Controller
                 'tasks' => $tasks,
             ];
             $data += $this->counts($user);
-            return view('users.show', $data);
+            return view('tasks.index', $data);
         }else {
             return view('welcome');
         }
@@ -43,11 +43,14 @@ class TasksController extends Controller
      */
     public function create()
     {
+        
         $task = new Task;
-
+        
         return view('tasks.create', [
             'task' => $task,
         ]);
+
+        
     }
 
     /**

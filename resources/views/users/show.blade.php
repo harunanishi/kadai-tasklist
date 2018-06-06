@@ -18,7 +18,7 @@
                 <li><a href="#">Followings</a></li>
                 <li><a href="#">Followers</a></li>
             </ul>
-            @if (Auth::user()->id == $user->id)
+            @if (isset($user = User::find($id)), Auth::user()->id == $user->id)
                   {!! Form::open(['route' => 'tasks.store']) !!}
                       <div class="form-group">
                           {!! Form::label('status', 'ステータス') !!}

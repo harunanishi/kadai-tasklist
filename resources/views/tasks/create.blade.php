@@ -10,7 +10,6 @@
             
     
 
-    @if ( Auth::user()->id)
     {!! Form::model($task, ['route' => 'tasks.store']) !!}
         <div class="form-group">
                     {!! Form::label('status', 'ステータス:') !!}
@@ -24,8 +23,7 @@
                 
                 {!! Form::submit('投稿',['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
-    @else{!! redirect('/') !!}
-    @endif   
+
    </div>
 </div>
 

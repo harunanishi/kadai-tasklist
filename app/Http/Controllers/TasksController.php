@@ -30,7 +30,7 @@ class TasksController extends Controller
                 'tasks' => $tasks,
             ];
             $data += $this->counts($user);
-            return view('tasks.index', $data);
+            return view('users.show', $data);
         }else {
             return view('welcome');
         }
@@ -82,10 +82,18 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
+        
+         if (\Auth::user()->id === $task->user_id) {
 
         return view('tasks.show', [
             'task' => $task,
         ]);
+         }
+        
+            return redirect('/');
+        
+
+        
     }
 
     /**
@@ -103,11 +111,17 @@ class TasksController extends Controller
         return view('tasks.edit', [
             'task' => $task,
         ]);
+        
+       }
+        
+        
+            return redirect('/');
+        
 
         }
         
 
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -144,6 +158,6 @@ class TasksController extends Controller
             $task->delete();
         }
 
-        return redirect()->back();
+        return redirect('/');
     }
 }

@@ -59,19 +59,7 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'status' => 'required|max:10',   // add
-            'content' => 'required|max:191',
-        ]);
-        $request->user()->tasks()->create([
-            'content' => $request->content,
-            'status' => $request->status,
-        ]);
-
-        return redirect('/'); 
-    }
+   
 
     /**
      * Display the specified resource.
@@ -150,14 +138,5 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $task = \App\Task::find($id);
-
-        if (\Auth::user()->id === $task->user_id) {
-            $task->delete();
-        }
-
-        return redirect('/');
-    }
+   
 }
